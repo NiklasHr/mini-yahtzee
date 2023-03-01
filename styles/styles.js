@@ -4,7 +4,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    alignItems:'center',
   },
   header: {
     marginTop: 30,
@@ -63,6 +62,10 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 20,
+    margin:10,
+  },
+  textSmall: {
+    fontSize: 15,
     margin:10,
   },
   input: {
