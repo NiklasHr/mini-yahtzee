@@ -4,7 +4,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    marginTop:25,
   },
   header: {
     marginTop: 30,
