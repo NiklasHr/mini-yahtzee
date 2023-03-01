@@ -4,6 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+    alignItems:'center',
   },
   header: {
     marginTop: 30,
@@ -51,18 +52,32 @@ export default StyleSheet.create({
   flex: {
     flexDirection: "row"
   },
-  button: {
-    margin: 30,
-    flexDirection: "row",
-    padding: 10,
-    backgroundColor: "#73CED6",
-    width: 150,
-    borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   buttonText: {
     color:"#2B2B52",
     fontSize: 20
+  },
+
+  //added and edited styling
+  icon: {
+    margin:10,
+  },
+  text: {
+    fontSize: 20,
+    margin:10,
+  },
+  input: {
+    borderWidth:1,
+    color:'#000000',
+    width:250,
+    margin:10,
+    padding:5,
+    fontSize:20
+  },
+  button: {
+    margin: 10,
+    flexDirection: "row",
+    padding: 5,
+    backgroundColor: "#2895dd",
+    borderRadius: 15,
   }
 })
