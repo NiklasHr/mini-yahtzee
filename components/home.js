@@ -13,7 +13,7 @@ export default Home = () => {
     const [isPressed, setIsPressed] = useState(false);
 
     return ( 
-        <ScrollView style={styles.container} contentContainerStyle={{alignItems:'center'}}>
+        <ScrollView style={styles.gameboard} contentContainerStyle={{alignItems:'center'}}>
             <Header />
             {!isPressed ? 
             <>

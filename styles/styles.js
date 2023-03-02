@@ -14,7 +14,8 @@ export default StyleSheet.create({
   footer: {
     marginTop: 20,
     backgroundColor: 'skyblue',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom:10
   },
   title: {
     color: '#fff',
@@ -34,8 +35,6 @@ export default StyleSheet.create({
   },
   gameboard: {
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   gameinfo: {
     backgroundColor: '#fff',
@@ -45,11 +44,11 @@ export default StyleSheet.create({
     marginTop: 10
   },
   row: {
-    marginTop: 20,
     padding: 10
   },
   flex: {
-    flexDirection: "row"
+    flexDirection: "row",
+    marginTop:10
   },
   buttonText: {
     color:"#2B2B52",

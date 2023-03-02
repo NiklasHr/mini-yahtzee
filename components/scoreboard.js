@@ -9,9 +9,9 @@ import { DataTable } from "react-native-paper";
 export default Scoreboard = () => {
 
     return ( 
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={{alignItems:'center'}}>
             <Header />
             <Footer />
-        </View>
+        </ScrollView>
     )
 }
