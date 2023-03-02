@@ -18,17 +18,19 @@ export default Gameboard = () => {
     const [nbrOfThrowsLeft, setNbrOfThrowsLeft] = useState(NBR_OF_THROWS);
     const [status, setStatus] = useState('');
     const [selectedDices, setSelectedDices] = useState(new Array(NBR_OF_DICES).fill(false));
-    const [selectedAmount, setSelectedAmount] = useState(new Array(MAX_SPOT).fill(false));
+    const [selectedValue, setSelectedValue] = useState(new Array(MAX_SPOT).fill(false));
+    const [selectedPoints, setSelectedPoints] = useState(new Array(MAX_SPOT).fill(false));
 
+    //Row displaying dice throws
     const diceRow = [];
     for (let i = 0; i < NBR_OF_DICES; i++) {
         diceRow.push(
             <Pressable
-                key={"diceRow" + i}
+                key={'diceRow' + i}
                 onPress={() => selectDice(i)}>
                 <MaterialCommunityIcons
                     name={board[i]}
-                    key={"diceRow" + i}
+                    key={'diceRow' + i}
                     size={50} 
                     color={getDiceColor(i)}>
                 </MaterialCommunityIcons>
@@ -36,19 +38,56 @@ export default Gameboard = () => {
         );
     }
 
-    const amountRow = [];
-        for (let i = 0; i < 6; i++){
-            amountRow.push(
+    //Row displaying dice values from 1 to 6
+    const valueRow = [];
+    for (let i = 0; i < 6; i++){
+        valueRow.push(
+            <Col key={'valueRow' +  i}>
                 <Pressable 
-                    key={'amountRow' + i} onPress={() => selectAmount(i)}>
+                    style={styles.center}
+                    key={'valueRow' + i} onPress={() => selectValue(i)}>
                     <MaterialCommunityIcons 
                         name={'numeric-' + (i + 1) + '-circle'}
-                        key={'amountRow' + i}
+                        key={'valueRow' + i}
                         size={40}
-                        color={getAmountColor(i)}>
+                        color={getValueColor(i)}>
                     </MaterialCommunityIcons>
                 </Pressable>
+            </Col>
         )
+    }
+
+    //Row displaying saved point amount.
+    const pointsRow = [];
+    for (let i = 0; i < 6; i++) {
+        pointsRow.push(
+            <Col key={'points' +  i}>
+                <Text
+                    key={'points' + pointsRow} 
+                    style={styles.center}
+                >0</Text>
+            </Col>
+        )
+    }
+
+    function getDiceColor(i) {
+        return selectedDices[i] ? 'black' : '#2895dd';
+    }
+
+    function getValueColor(i) {
+        return selectedValue[i] ? 'black' : '#2895dd';
+    }
+
+    function selectDice(i) {
+        let dices = [...selectedDices];
+        dices[i] = selectedDices[i] ? false : true;
+        setSelectedDices(dices);
+    }
+
+    function selectValue(i) {
+        let value = [...selectedValue];
+        value[i] = selectedValue[i] ? false : true;
+        setSelectedValue(value);
     }
 
     function handlePress() {
@@ -68,56 +107,33 @@ export default Gameboard = () => {
     useEffect(() => {
         checkWinner();
         if (nbrOfThrowsLeft === NBR_OF_THROWS) {
-        setStatus('Game has not started');
+            setStatus('Game has not started');
         }
         if (nbrOfThrowsLeft < 0) {
-        setNbrOfThrowsLeft(NBR_OF_THROWS-1);
+            setNbrOfThrowsLeft(NBR_OF_THROWS-1);
         }
     }, [nbrOfThrowsLeft]);
 
-    function getDiceColor(i) {
-        return selectedDices[i] ? "black" : "#2895dd";
-    }
-
-    function getAmountColor(i) {
-        return selectedAmount[i] ? "black" : "#2895dd";
-    }
-
-    function selectDice(i) {
-        let dices = [...selectedDices];
-        dices[i] = selectedDices[i] ? false : true;
-        setSelectedDices(dices);
-    }
-
-    function selectAmount(i) {
-        let amount = [...selectedAmount];
-        amount[i] = selectedDices[i] ? false : true;
-        setSelectedAmount(amount);
-    }
-
     function checkWinner() {
         if (board.every((val, i, arr) => val === arr[0]) && nbrOfThrowsLeft > 0) {
-        setStatus('You won');
-        }
-        else if (board.every((val, i, arr) => val === arr[0]) && nbrOfThrowsLeft === 0) {
-        setStatus('You won, game over');
-        setSelectedDices(new Array(NBR_OF_DICES).fill(false));
-        }
-        else if (nbrOfThrowsLeft === 0) {
-        setStatus('Game over');
-        setSelectedDices(new Array(NBR_OF_DICES).fill(false));
-        }
-        else {
-        setStatus('Keep on throwing');
+            setStatus('You won');
+        } else if (board.every((val, i, arr) => val === arr[0]) && nbrOfThrowsLeft === 0) {
+            setStatus('You won, game over');
+            setSelectedDices(new Array(NBR_OF_DICES).fill(false));
+        } else if (nbrOfThrowsLeft === 0) {
+            setStatus('Game over');
+            setSelectedDices(new Array(NBR_OF_DICES).fill(false));
+        } else {
+            
         }
     }
 
     function throwDices() {
         for (let i = 0; i < NBR_OF_DICES; i++) {
-        if (!selectedDices[i]) {
-            let randomNumber = Math.floor(Math.random() * 6 + 1);
-            board[i] = 'dice-' + randomNumber;
-        }
+            if (!selectedDices[i]) {
+                let randomNumber = Math.floor(Math.random() * 6 + 1);
+                board[i] = 'dice-' + randomNumber;
+            }
         }
         setNbrOfThrowsLeft(nbrOfThrowsLeft-1);
     }
@@ -147,7 +163,8 @@ export default Gameboard = () => {
 
             <Text style={styles.text}>Total: ....</Text>
             <Text style={styles.text}>You are {BONUS_POINTS_LIMIT} points away from bonus</Text>
-            <View style={styles.flex}>{amountRow}</View>
+            <View style={styles.flex}>{pointsRow}</View>
+            <View style={styles.flex}>{valueRow}</View>
             
             
             <Footer />

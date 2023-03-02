@@ -46,10 +46,6 @@ export default StyleSheet.create({
   row: {
     padding: 10
   },
-  flex: {
-    flexDirection: "row",
-    marginTop:10
-  },
   buttonText: {
     color:"#2B2B52",
     fontSize: 20
@@ -81,5 +77,11 @@ export default StyleSheet.create({
     padding: 5,
     backgroundColor: "#2895dd",
     borderRadius: 15,
+  },
+  flex: {
+    flexDirection: "row",
+  },
+  center: {
+    alignSelf:'center'
   }
 })
