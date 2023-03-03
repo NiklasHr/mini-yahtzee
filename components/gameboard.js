@@ -8,7 +8,8 @@ import Header from "./header";
 import Footer from "./footer";
 import styles from '../styles/styles';
 import { Pressable } from 'react-native';
-//React Native Easy Grid is used in the Gameboard (in teacher's version)
+
+//Next step: display total value and save selected value.
 
 let board = [];
 
