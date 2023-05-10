@@ -39,12 +39,20 @@ export default Scoreboard = () => {
             <Text style={styles.text}>Top Scores:</Text>
 
             {scores.length > 0 ? (
-                <View>
+                <View style={styles.container}>
+                    <View style={styles.scoreboardContainer}>
+                        <Text style={styles.text}>Name</Text>
+                        <Text style={styles.text}>Score</Text>
+                        <Text style={styles.text}>Date</Text>
+                        <Text style={styles.text}>Time</Text>
+                    </View>
                     {scores.map((score, index) => (
-                        <View key={index}>
-                            <Text style={styles.text}>{score.playerName}: {score.scoreTotal}</Text>
-                            <Text style={styles.textSmall}>{score.currentDate} {score.currentTime}</Text>
-                        </View>
+                    <View key={index} style={[styles.scoreboardContainer, {borderBottomWidth:0}]}>
+                        <Text style={styles.text}>{score.playerName} </Text>
+                        <Text style={styles.text}>{score.scoreTotal}</Text>
+                        <Text style={styles.text}>{score.currentDate} </Text>
+                        <Text style={styles.text}>{score.currentTime}</Text>
+                    </View>
                     ))}
                 </View>
             ) : (

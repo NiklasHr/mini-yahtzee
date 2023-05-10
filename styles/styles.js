@@ -52,6 +52,14 @@ export default StyleSheet.create({
   },
 
   //added and edited styling
+  scoreboardContainer: {
+    flex:1,
+    flexDirection:'row', 
+    justifyContent:'space-evenly', 
+    alignItems:'center',
+    borderBottomWidth:1,
+    width:'95%'
+  },
   icon: {
     margin:10,
   },
