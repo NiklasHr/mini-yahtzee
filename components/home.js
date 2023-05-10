@@ -4,13 +4,31 @@ import { Button } from 'react-native-paper';
 import styles from '../styles/styles';
 import Header from "./header";
 import Footer from "./footer";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NBR_OF_DICES, NBR_OF_THROWS, MIN_SPOT, MAX_SPOT, BONUS_POINTS_LIMIT, BONUS_POINTS } from './constants'
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
-export default Home = () => {
+export default Home = ({}) => {
 
     const [playerName, setPlayerName] = useState('');
     const [isPressed, setIsPressed] = useState(false);
+
+    function handlePress() {
+        if (playerName != '') {
+            setIsPressed(current => !current)
+            storeName(playerName)
+        } else {
+            alert('Please input your username')
+        }
+    }
+
+    const storeName = async (value) => {
+        try {
+          await AsyncStorage.setItem('name', value);
+        } catch (e) {
+          alert(e);
+        }
+      };
 
     return ( 
         <ScrollView style={styles.gameboard} contentContainerStyle={{alignItems:'center'}}>
@@ -25,7 +43,7 @@ export default Home = () => {
                     style={styles.button} 
                     mode='contained'
                     labelStyle={{fontSize: 20}}
-                    onPress={() => setIsPressed(current => !current)}
+                    onPress={() => handlePress()}
                 >OK</Button>
             </>
             :
